@@ -9,7 +9,7 @@ services:
     image: traefik:latest
     container_name: "traefik"
     command:
-      - "--pilot.token=bcf42c1b-ec0f-46e7-a8ae-38ede40e5138"
+      - "--pilot.token=${PILOT_TOKEN}"
     restart: always
     ports:
       - 80:80
