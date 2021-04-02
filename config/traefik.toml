@@ -1,0 +1,28 @@
+[global]
+  sendAnonymousUsage = false
+
+[log]
+  level = "DEBUG"
+  format = "json"
+  filePath = "/var/log/traefik/traefik.log"
+
+[accessLog]
+  format = "json"
+  filePath = "/var/log/traefik/access.log"
+
+[entryPoints]
+  [entryPoints.http]
+    address = ":80"
+
+  [entryPoints.https]
+    address = ":443"
+
+[providers]
+  [providers.docker]
+    exposedByDefault = false
+    network = "traefik"
+    endpoint = "unix:///var/run/docker.sock"
+
+[api]
+  insecure = true
+  dashboard = true

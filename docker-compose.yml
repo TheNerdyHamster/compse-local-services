@@ -1,0 +1,25 @@
+version: '3'
+
+networks:
+  traefik:
+    external: true
+
+services:
+  traefik:
+    image: traefik:latest
+    container_name: "traefik"
+    command:
+      - "--pilot.token=bcf42c1b-ec0f-46e7-a8ae-38ede40e5138"
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+      - 8080:8080
+    networks:
+      - traefik
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./logs:/var/log/traefik
+      - ./certs:/etc/certs
+      - ./config/traefik.toml:/etc/traefik/traefik.toml
+      - ./config/traefik.config.toml:/etc/traefik/traefik.config.toml
