@@ -37,9 +37,8 @@ services:
     restart: unless-stopped
     tty: true
     environment:
-      POSTGRES_USER: admin
-      POSTGRES_PASSWORD: test
-      POSTGRES_DB: test
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PWD}
     ports:
       - 5432:5432
     volumes:
